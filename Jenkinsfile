@@ -25,8 +25,10 @@ pipeline {
         stage('push image') {
             steps{
                 script{
-                    sh "docker login -u ${DOCKER_USERNAME} -P ${DOCKER_PASSWORD}"
-                    sh "docker push aashima3613/pyapp"
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+                        def dockerImageTag = "${DOCKER_IMAGE}:${env.BUILD_NUMBER}"
+                        sh "docker push ${dockerImageTag}"
                 }
             }
         }
