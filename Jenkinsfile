@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'pyapp'
+        DOCKER_IMAGE = 'aashima3613/pyapp'
         // BUILD_NUMBER is automatically available as env.BUILD_NUMBER
     }
 
