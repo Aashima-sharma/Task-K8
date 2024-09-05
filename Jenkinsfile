@@ -22,5 +22,13 @@ pipeline {
                 }
             }
         }
+        stage('push image') {
+            steps{
+                script{
+                    sh "docker login -u ${DOCKER_USERNAME} -P ${DOCKER_PASSWORD}"
+                    sh "docker push aashima3613/pyapp"
+                }
+            }
+        }
     }
 }
