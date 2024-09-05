@@ -27,9 +27,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    // Authenticate with Docker Hub
-                    withDockerRegistry([ credentialsId: "dockerid", url: "https://index.docker.io/v1/" ]) {
-                        // Push the Docker image
+                    // Authenticate with Docker Hub and push the Docker image
+                    withCredentials([usernamePassword(credentialsId: 'dockerid', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
                         def dockerImageTag = "${DOCKER_IMAGE}:${env.BUILD_NUMBER}"
                         sh "docker push ${dockerImageTag}"
                     }
