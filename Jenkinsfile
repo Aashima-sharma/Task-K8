@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
         DOCKER_IMAGE = 'pyapp'  
-        BUILD_NUMBER = env.BUILD_NUMBER 
+        BUILD_NUMBER = "${env.BUILD_NUMBER}" 
     }
     stages{
         stage('Clone repository') {
