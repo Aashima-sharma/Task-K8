@@ -10,7 +10,7 @@ pipeline {
         stage('Clone repository') {
             steps {
                 // Clone the repository from Git
-                git branch: 'main', url: 'https://github.com/your-repo/your-project.git'
+                git branch: 'main', url: 'https://github.com/Aashima-sharma/Task-K8.git'
             }
         }
         
