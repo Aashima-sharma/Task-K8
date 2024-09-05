@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'pyapp'
-        // No need to define BUILD_NUMBER here, it's available as env.BUILD_NUMBER
+        // BUILD_NUMBER is automatically available as env.BUILD_NUMBER
     }
 
     stages {
@@ -13,7 +13,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Aashima-sharma/Task-K8.git'
             }
         }
-        
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Push Docker Image') {
             steps {
                 script {
